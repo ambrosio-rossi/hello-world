@@ -1,7 +1,7 @@
 name: Synchronize Content
 on:
   schedule:
-    - cron:  '0/5 * * ? *'
+    - cron:  '0/15 * * ? *'
 jobs:
   sync:
     runs-on: ubuntu-latest
