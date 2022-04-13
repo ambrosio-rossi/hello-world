@@ -1,0 +1,49 @@
+name: Synchronize Content
+on:
+  schedule:
+    - cron:  '0/5 * * ? *'
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{secrets.GH_TOKEN}}
+          ref: gh-pages
+      - name: Clean Up
+        run: |
+          rm -rf artifacts/
+          rm -rf docs-site/
+          rm -rf index.html
+          rm -rf css/
+          rm -rf CNAME
+          rm -rf setup/
+          rm -rf 404.html
+          rm -rf lifecycle/
+          rm -rf charts/
+          rm -rf search/
+          rm -rf img/
+          rm -rf .gitignore
+          rm -rf api/
+          rm -rf sitemap.xml
+          rm -rf sitemap.xml.gz
+          rm -rf community/
+          rm -rf assets/
+          rm -rf migration/
+          rm -rf index.yaml
+          rm -rf cheatsheet/
+      - name: Sync Content
+        run: |
+          mkdir sync
+          cd sync/
+          git clone https://github.com/sap/xsk
+          cd xsk/
+          git checkout gh-pages
+          cp -R * ../../
+          cd ../..
+          rm -rf sync/        
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Sync Content
+          commit_user_name: ${{secrets.GH_USER_NAME}}
+          commit_user_email: ${{secrets.GH_USER_EMAIL}}
