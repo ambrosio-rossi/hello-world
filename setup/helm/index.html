@@ -1,0 +1,2408 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.xsk.io/setup/helm/">
+      
+      <link rel="icon" href="/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+    
+    
+      
+        <title>Helm - Project XSK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.120efc48.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-M0J229K798"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-M0J229K798",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0J229K798"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setup-with-helm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Project XSK" class="md-header__button md-logo" aria-label="Project XSK" data-md-component="logo">
+      
+  <img src="/img/xsk-logo-white-tr.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Project XSK
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Helm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sap/xsk" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sap/xsk
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Project XSK" class="md-nav__button md-logo" aria-label="Project XSK" data-md-component="logo">
+      
+  <img src="/img/xsk-logo-white-tr.png" alt="logo">
+
+    </a>
+    Project XSK
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sap/xsk" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sap/xsk
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../artifacts/">Artifacts</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Artifacts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Artifacts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbanalyticprivilege/" class="md-nav__link">
+        hdbanalyticprivilege
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbtable/" class="md-nav__link">
+        hdbtable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbview/" class="md-nav__link">
+        hdbview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbtablefunction/" class="md-nav__link">
+        hdbtablefunction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbprocedure/" class="md-nav__link">
+        hdbprocedure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbschema/" class="md-nav__link">
+        hdbschema
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbsynonym/" class="md-nav__link">
+        hdbsynonym
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbdd/" class="md-nav__link">
+        hdbdd
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbdd/" class="md-nav__link">
+        hdbcds
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/hdbsequence/" class="md-nav__link">
+        hdbsequence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/xsjs/" class="md-nav__link">
+        xsjs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/xsjs/" class="md-nav__link">
+        xsjslib
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/xsodata/" class="md-nav__link">
+        xsodata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/xshttpdest/" class="md-nav__link">
+        xshttpdest
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../api/">API</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/db/" class="md-nav__link">
+        $.db
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/hdb/" class="md-nav__link">
+        $.hdb
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/import/" class="md-nav__link">
+        $.import
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/jobs/" class="md-nav__link">
+        $.jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../api/net/">$.net</a>
+          
+            <label for="__nav_3_6">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="$.net" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          $.net
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6_2" type="checkbox" id="__nav_3_6_2" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../api/net/http/">$.net.http</a>
+          
+            <label for="__nav_3_6_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="$.net.http" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          $.net.http
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/net/http/net.http.Client/" class="md-nav__link">
+        $.net.http.Client
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/net/http/net.http.Destination/" class="md-nav__link">
+        $.net.http.Destination
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/net/http/net.http.Request/" class="md-nav__link">
+        $.net.http.Request
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/net/net.Destination/" class="md-nav__link">
+        $.net.Destination
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/net/net.Mail.Part/" class="md-nav__link">
+        $.net.Mail.Part
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/net/net.Mail/" class="md-nav__link">
+        $.net.Mail
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/net/net.SMTPConnection/" class="md-nav__link">
+        $.net.SMTPConnection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/request/" class="md-nav__link">
+        $.request
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/response/" class="md-nav__link">
+        $.response
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/session/" class="md-nav__link">
+        $.session
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/trace/" class="md-nav__link">
+        $.trace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_11" type="checkbox" id="__nav_3_11" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../api/util/">$.util</a>
+          
+            <label for="__nav_3_11">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="$.util" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_11">
+          <span class="md-nav__icon md-icon"></span>
+          $.util
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/util/util.codec/" class="md-nav__link">
+        $.util.codec
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/util/util.Zip/" class="md-nav__link">
+        $.util.Zip
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_12" type="checkbox" id="__nav_3_12" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../api/web/">$.web</a>
+          
+            <label for="__nav_3_12">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="$.web" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_12">
+          <span class="md-nav__icon md-icon"></span>
+          $.web
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/web/web.Body/" class="md-nav__link">
+        $.web.Body
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/web/web.EntityList/" class="md-nav__link">
+        $.web.EntityList
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/web/web.TupelList/" class="md-nav__link">
+        $.web.TupelList
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/web/web.WebEntityRequest/" class="md-nav__link">
+        $.web.WebEntityRequest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/web/web.WebEntityResponse/" class="md-nav__link">
+        $.web.WebEntityResponse
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/request/" class="md-nav__link">
+        $.web.WebRequest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/response/" class="md-nav__link">
+        $.web.WebResponse
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Setup" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../prerequisites/">Prerequisites</a>
+          
+            <label for="__nav_4_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Prerequisites" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Prerequisites
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/delivery-unit/" class="md-nav__link">
+        Delivery Unit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/database-user/" class="md-nav__link">
+        Database User
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local/" class="md-nav__link">
+        Local
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud-foundry/" class="md-nav__link">
+        Cloud Foundry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kyma/" class="md-nav__link">
+        Kyma
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Helm
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Helm
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-kpack" class="md-nav__link">
+    Setup - Kpack
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          Configurations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Configurations" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Configurations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configurations/environment-variables/" class="md-nav__link">
+        Environment Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configurations/hdi/" class="md-nav__link">
+        HDI
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Migration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Migration" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Migration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../migration/guide/" class="md-nav__link">
+        Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../migration/changes/" class="md-nav__link">
+        Changes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Lifecycle
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lifecycle" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Lifecycle
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lifecycle/cicd/" class="md-nav__link">
+        CI/CD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Cheat Sheet
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cheat Sheet" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Cheat Sheet
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cheatsheet/troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        Community
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-kpack" class="md-nav__link">
+    Setup - Kpack
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/sap/xsk/edit/gh-pages/docs-site/docs/setup/helm.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="setup-with-helm">Setup with Helm</h1>
+<h2 id="overview">Overview</h2>
+<hr />
+<p>You can deploy XSK via Helm chart in a Kubernetes cluster.</p>
+<div class="admonition info">
+<p class="admonition-title">Prerequisites</p>
+<ul>
+<li>Install the <a href="https://helm.sh/docs/intro/install/#helm">Helm CLI</a>.</li>
+<li>Make sure you have access to a <a href="https://kubernetes.io/docs/setup/">Kubernetes Cluster</a>.</li>
+</ul>
+</div>
+<h2 id="setup">Setup</h2>
+<hr />
+<ol>
+<li>
+<p>Add the XSK Helm repository:</p>
+<div class="highlight"><pre><span></span><code>helm repo add xsk https://www.xsk.io
+
+helm repo update
+</code></pre></div>
+</li>
+<li>
+<p>Verify XSK Helm charts:</p>
+<p>From key server</p>
+<div class="highlight"><pre><span></span><code>helm pull xsk/xsk --prov
+gpg --keyserver keys.openpgp.org --recv-key 734B0E32368A2283290E0B966010F454D1819484
+gpg --export &gt; ~/.gnupg/pubring.gpg
+helm verify xsk-&lt;version&gt;.tgz 
+</code></pre></div>
+<p>From github</p>
+<div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>Use command <code>wget</code> for download public key instead of <code>curl</code></p>
+</div>
+<div class="highlight"><pre><span></span><code>helm pull xsk/xsk --prov
+wget https://sap.github.io/xsk/charts/pubring.gpg -O ~/.gnupg/pubring.gpg
+helm verify xsk-&lt;version&gt;.tgz 
+</code></pre></div>
+</li>
+<li>
+<p>Deployment</p>
+<p>To deploy XSK, you can use the following instructions:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Basic</label><label for="__tabbed_1_2">Kyma</label><label for="__tabbed_1_3">Kyma with SAP HANA database</label><label for="__tabbed_1_4">Kyma with custom roles</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm install xsk xsk/xsk
+</code></pre></div>
+<details class="info" open="open">
+<summary>Accessing the XSK Instance</summary>
+<p>Running this command will install XSK <code>Deployment</code> and <code>Service</code> with <code>ClusterIP</code> only. To access the XSK instance, execute the command that was printed in the console.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>export POD_NAME=$(kubectl get pods --namespace default -l &quot;app.kubernetes.io/name=xsk,app.kubernetes.io/instance=xsk&quot; -o jsonpath=&quot;{.items[0].metadata.name}&quot;)
+echo &quot;Visit http://127.0.0.1:8080 to use your application&quot;
+kubectl --namespace default port-forward $POD_NAME 8080:8080    
+</code></pre></div>
+<ul>
+<li>Navigate to: <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a></li>
+<li>Log in with these username and password: <code>dirigible</code>/<code>dirigible</code></li>
+</ul>
+</details>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm install xsk xsk/xsk \
+--set kyma.enabled=true \
+--set kyma.host=&lt;kyma-host&gt;
+</code></pre></div>
+<p>This will install additionally an <code>ApiRule</code> and XSUAA <code>ServiceInstance</code> and <code>ServiceBinding</code>. The appropriate roles should be assigned to the user.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm install xsk xsk/xsk \
+--set hana.enabled=true \
+--set hana.url=&lt;hana-url&gt; \
+--set hana.username=&lt;hana-username&gt; \
+--set hana.password=&lt;hana-password&gt; \
+--set kyma.enabled=true \
+--set kyma.host=&lt;kyma-apirule-host&gt;
+</code></pre></div>
+<p>This will install additionally an <code>ApiRule</code>, XSUAA <code>ServiceInstance</code>, <code>ServiceBinding</code> and HANA instance. The appropriate roles should be assigned to the user.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm install xsk xsk \            
+--set kyma.enabled=true \
+--set kyma.host=&lt;kyma-apirule-host&gt; \
+--set kyma.addRoles=true \
+--set kyma.roles={&quot;&lt;new-role&gt;&quot;\,&quot;&lt;new-role&gt;&quot;}
+</code></pre></div>
+<p>This will install additionally an <code>ApiRule</code> and XSUAA <code>ServiceInstance</code> and <code>ServiceBinding</code> with default roles <code>Developer</code> and <code>Operator</code> and will add your new roles. The appropriate roles should be assigned to the user.</p>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>Configuration Options</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>replicaCount</code></td>
+<td>Number of replicas</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>deployment.strategyType</code></td>
+<td>Deployment strategy type</td>
+<td><code>Recreate</code></td>
+</tr>
+<tr>
+<td><code>deployment.readinessProbePeriodSeconds</code></td>
+<td>Readiness probe period seconds</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>deployment.readinessProbeInitialDelaySeconds</code></td>
+<td>Readiness probe initial delay</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>deployment.readinessProbeHttpGetPort</code></td>
+<td>Readiness probe http get port</td>
+<td><code>8080</code></td>
+</tr>
+<tr>
+<td><code>deployment.LivenessProbePeriodSeconds</code></td>
+<td>Liveness probe period seconds</td>
+<td><code>60</code></td>
+</tr>
+<tr>
+<td><code>deployment.LivenessProbeInitialDelaySeconds</code></td>
+<td>Liveness probe initial delay</td>
+<td><code>60</code></td>
+</tr>
+<tr>
+<td><code>deployment.LivenessProbeHttpGetPort</code></td>
+<td>Liveness probe http get port</td>
+<td><code>8080</code></td>
+</tr>
+<tr>
+<td><code>deployment.volumeMountsName</code></td>
+<td>Volume mount name</td>
+<td><code>xsk-volume</code></td>
+</tr>
+<tr>
+<td><code>deployment.volumeMountsMountPath</code></td>
+<td>Volume mounts mount Path</td>
+<td><code>/usr/local/tomcat/target/dirigible/repository</code></td>
+</tr>
+<tr>
+<td><code>deployment.volumesName</code></td>
+<td>Volume name</td>
+<td><code>xsk-volume</code></td>
+</tr>
+<tr>
+<td><code>deployment.volumespersistentVolumeClaimClaimName</code></td>
+<td>Volume spersistent volume claim</td>
+<td><code>xsk-claim</code></td>
+</tr>
+<tr>
+<td><code>persistentVolumeClaim.enabled</code></td>
+<td>Persistent volume claim enable</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>persistentVolumeClaim.Name</code></td>
+<td>Persistent volume claim name</td>
+<td><code>xsk-claim</code></td>
+</tr>
+<tr>
+<td><code>persistentVolumeClaim.accessModes</code></td>
+<td>Persistent volume claim access modes</td>
+<td><code>ReadWriteOnce</code></td>
+</tr>
+<tr>
+<td><code>persistentVolumeClaim.resourcesStorage</code></td>
+<td>Persistent volume claim resources storage</td>
+<td><code>1Gi</code></td>
+</tr>
+<tr>
+<td><code>serviceAccount.create</code></td>
+<td>Create service account</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>serviceAccount.annotations</code></td>
+<td>Add annotations to sa</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>serviceAccount.name</code></td>
+<td>Service account name</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>securityContext.allowPrivilegeEscalation</code></td>
+<td>Allow privileged escalation</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>securityContext.seccompProfile.type</code></td>
+<td>Enable seccomp profile</td>
+<td><code>RuntimeDefault</code></td>
+</tr>
+<tr>
+<td><code>podSecurityContext</code></td>
+<td>Pod Security Context</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>service.type</code></td>
+<td>Type of service</td>
+<td><code>ClusterIP</code></td>
+</tr>
+<tr>
+<td><code>service.port</code></td>
+<td>Port of service</td>
+<td><code>8080</code></td>
+</tr>
+<tr>
+<td><code>nameOverride</code></td>
+<td>Name override</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>fullNameOverride</code></td>
+<td>Full name override</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>kyma.enabled</code></td>
+<td>Enable Kyma</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>kyma.host</code></td>
+<td>Kyma host</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>kyma.serverMaxHttpHeaderSize</code></td>
+<td>Tomcat max http header size</td>
+<td><code>48000</code></td>
+</tr>
+<tr>
+<td><code>kyma.addRoles</code></td>
+<td>Enable add new roles</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>kyma.roles</code></td>
+<td>Name for new roles</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>kyma.roleCollections.description</code></td>
+<td>Set role collections description</td>
+<td><code>XSK Developer</code>, <code>XSK Operator</code></td>
+</tr>
+<tr>
+<td><code>kyma.roleCollections.name</code></td>
+<td>Set role collections name</td>
+<td><code>XSK-Developer</code>, <code>XSK Operator</code></td>
+</tr>
+<tr>
+<td><code>kyma.roleCollections.role-template-references</code></td>
+<td>Set role collections role template</td>
+<td><code>$XSAPPNAME.Developer</code>, <code>$XSAPPNAME.Operator</code></td>
+</tr>
+<tr>
+<td><code>kyma.roleTemplates.description</code></td>
+<td>Set role templates description</td>
+<td><code>Developer related roles</code>, <code>Operator related roles</code></td>
+</tr>
+<tr>
+<td><code>kyma.roleTemplates.name</code></td>
+<td>Set role templates name</td>
+<td><code>Developer</code>, <code>Operator</code></td>
+</tr>
+<tr>
+<td><code>kyma.roleTemplates.scopeReferences</code></td>
+<td>Set role templates scope references</td>
+<td><code>$XSAPPNAME.Developer</code>, <code>$XSAPPNAME.Operator</code></td>
+</tr>
+<tr>
+<td><code>kyma.scopes.description</code></td>
+<td>Set scopes description</td>
+<td><code>Developer scope</code>, <code>Operator scope</code></td>
+</tr>
+<tr>
+<td><code>kyma.scopes.name</code></td>
+<td>Set scopes name</td>
+<td><code>$XSAPPNAME.Developer</code>, <code>$XSAPPNAME.Operator</code></td>
+</tr>
+<tr>
+<td><code>application.image</code></td>
+<td>Application image</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>application.homeUrl</code></td>
+<td>Home url for XSK</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>application.imagePullPolicy</code></td>
+<td>Image pull policy</td>
+<td><code>Always</code></td>
+</tr>
+<tr>
+<td><code>application.privateDockerRegistry</code></td>
+<td>Paramater to enable docker registry</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>application.dockerSecretName</code></td>
+<td>Secret name for docker  registry</td>
+<td><code>docker-registry-secret</code></td>
+</tr>
+<tr>
+<td><code>application.dockerServer</code></td>
+<td>Parameter to set Docker server</td>
+<td><code>https://index.docker.io/v1/</code></td>
+</tr>
+<tr>
+<td><code>application.dockerUsername</code></td>
+<td>User name for docker registry</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>application.dockerPassword</code></td>
+<td>Password for docker registry</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>application.dockerEmail</code></td>
+<td>Email for docker registry</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>hana.enabled</code></td>
+<td>Hana enable option</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>hana.secretName</code></td>
+<td>Hana secret name</td>
+<td><code>hana-secret</code></td>
+</tr>
+<tr>
+<td><code>hana.url</code></td>
+<td>Hana url instance</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>hana.username</code></td>
+<td>Hana username</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>hana.password</code></td>
+<td>Hana password</td>
+<td>``</td>
+</tr>
+</tbody>
+</table>
+</details>
+</li>
+<li>
+<p>Uninstall</p>
+<p>If you want to uninstall Helm, run:</p>
+<div class="highlight"><pre><span></span><code>helm uninstall xsk
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you created namespace with <code>helm install --create-namespace namespace &lt;your-namespace&gt;</code>. If you want the namespace to be deleted you need to delete you namespace manually <code>kubectl delete namespace &lt;your-namespace&gt;</code>.</p>
+</div>
+</li>
+</ol>
+<h2 id="setup-kpack">Setup - Kpack</h2>
+<p>You can choose to build and package your XSK application from source with Helm and Kpack by following these instructions:</p>
+<ol>
+<li>
+<p>Add the XSK kpack Helm repository:</p>
+<div class="highlight"><pre><span></span><code>helm repo add xsk https://www.xsk.io
+
+helm repo update
+</code></pre></div>
+</li>
+<li>
+<p>Deployment</p>
+<div class="admonition prerequisites">
+<p class="admonition-title">Prerequisites</p>
+<p>Install <a href="https://github.com/pivotal/kpack/blob/main/docs/install.md">kpack</a>.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">All in One</label><label for="__tabbed_2_2">Cluster Builder (Only)</label><label for="__tabbed_2_3">Image Builder (Only)</label><label for="__tabbed_2_4">Image (Only)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm install xsk-image xsk/xsk-kpack \
+--set install.all=true \
+--set docker.server=https://index.docker.io/v1/ \
+--set docker.username=&lt;your-docker-username&gt; \
+--set docker.password=&lt;your-docker-password&gt; \
+--set docker.email=&lt;your-email&gt; \
+--set image.repository=&lt;your-repository-for-your-OCI-image&gt; \
+--set imageBuilder.repository=&lt;builder-image&gt; \
+--set image.source=&lt;your-application-source&gt; 
+</code></pre></div>
+<p>This will build and package an OCI image for your application.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm install xsk-cluster-builder xsk/xsk-kpack \
+--set install.clusterBuilder=true \
+--set docker.server=https://index.docker.io/v1/ \
+--set docker.username=&lt;your-docker-username&gt; \
+--set docker.password=&lt;your-docker-password&gt; \
+--set docker.email=&lt;your-email&gt; \
+</code></pre></div>
+<p>This will install a kpack <code>ClusterStore</code> and <code>ClusterStack</code> resources.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm install xsk-image-builder xsk/xsk-kpack \
+--set install.imageBuilder=true \
+--set imageBuilder.repository=&lt;builder-image&gt;
+</code></pre></div>
+<p>This will install a kpack <code>Builder</code> resource.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm install xsk-image xsk/xsk-kpack \
+--set create.image=true \
+--set image.repository=&lt;your-repository-for-your-OCI-image&gt; \
+--set image.source=&lt;your-application-source&gt;
+</code></pre></div>
+<p>This will build and package an OCI image for your application.</p>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to synchronization issues the <code>All in One</code> setup could fail. To overcome this issue you could execute the <code>Cluster Builder (Only)</code>, <code>Image Builder (Only)</code> and <code>Image (Only)</code> steps.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can tail the logs for your image that is currently building using the <a href="https://github.com/vmware-tanzu/kpack-cli/blob/main/docs/kp_build_logs.md">Kpack CLI</a>.</p>
+<div class="highlight"><pre><span></span><code>kp build logs xsk-image -n default
+</code></pre></div>
+<p>You can check your image with:</p>
+<div class="highlight"><pre><span></span><code>kubectl -n default get image xsk-image
+</code></pre></div>
+<p>To download and run the newly created OCI image, execute:</p>
+<div class="highlight"><pre><span></span><code>docker run -p 8080:8080 &lt;latest-image-with-digest&gt;
+</code></pre></div>
+</div>
+<p>The application image that was built could be used as well in the installation of XSK with <a href="#setup">Helm</a>, <a href="../kyma/">Kyma</a> and <a href="../cloud-foundry">Cloud Foundry</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use for build Kyma (which is default), local and Cloud Foundry.</p>
+<ul>
+<li>For ClusterStack build image you can use <code>--set clusterBuilder.buildImage</code> and choose one of this:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>dirigiblelabs/buildpacks-stack-build-xsk-kyma - Kyma
+dirigiblelabs/buildpacks-stack-build-xsk-cf - Cloud Foundry
+dirigiblelabs/buildpacks-stack-build-xsk - Local
+</code></pre></div>
+<ul>
+<li>
+<p>For ClusterStack run image you can use <code>--set clusterBuilder.runImage</code> and choose one of this:
+<div class="highlight"><pre><span></span><code>dirigiblelabs/buildpacks-stack-run-xsk-kyma - Kyma
+dirigiblelabs/buildpacks-stack-run-xsk-cf - Cloud Foundry
+dirigiblelabs/buildpacks-stack-run-xsk - Local
+</code></pre></div></p>
+</li>
+<li>
+<p>For Builder image you can use <code>--set imageBuilder.buildpack</code> and choose one of this:
+<div class="highlight"><pre><span></span><code>--set imageBuilder.buildpack=dirigiblelabs/buildpacks-xsk-kyma - Kyma
+--set imageBuilder.buildpack=dirigiblelabs/buildpacks-xsk-cf - Cloud Foundry   
+--set imageBuilder.buildpack=dirigiblelabs/buildpacks-xsk - Local  
+</code></pre></div></p>
+</li>
+</ul>
+</div>
+<details class="info">
+<summary>Configuration Options</summary>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>install.clusterBuilder</code></td>
+<td>Kpack cluster store and stack</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>install.imageBuilder</code></td>
+<td>Kpack builder</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>install.allInOne</code></td>
+<td>Option to build all</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>create.image</code></td>
+<td>Kpack create OCI image</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>create.namespace</code></td>
+<td>Create namespace</td>
+<td><code>default</code></td>
+</tr>
+<tr>
+<td><code>docker.server</code></td>
+<td>Docker server url</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>docker.username</code></td>
+<td>Docker username</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>docker.password</code></td>
+<td>Docker password</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>docker.email</code></td>
+<td>Docker email</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>docker.secretName</code></td>
+<td>Docker secret name</td>
+<td><code>docker-registry-secret</code></td>
+</tr>
+<tr>
+<td><code>docker.serviceAccountName</code></td>
+<td>Docker service account name</td>
+<td><code>docker-registry-service-account</code></td>
+</tr>
+<tr>
+<td><code>imageBuilder.repository</code></td>
+<td>Docker service account name</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>imageBuilder.buildpack</code></td>
+<td>Docker service account name</td>
+<td><code>dirigiblelabs/buildpacks-xsk</code></td>
+</tr>
+<tr>
+<td><code>image.repository</code></td>
+<td>Docker service account name</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>image.source</code></td>
+<td>Docker service account name</td>
+<td>``</td>
+</tr>
+<tr>
+<td><code>image.serviceAccountName</code></td>
+<td>Docker service account name</td>
+<td><code>docker-registry-service-account</code></td>
+</tr>
+<tr>
+<td><code>clusterBuilder.buildImage</code></td>
+<td>Docker service account name</td>
+<td><code>dirigiblelabs/buildpacks-stack-build-xsk-kyma:latest</code></td>
+</tr>
+<tr>
+<td><code>clusterBuilder.runImage</code></td>
+<td>Docker service account name</td>
+<td><code>dirigiblelabs/buildpacks-stack-run-xskyma:latest</code></td>
+</tr>
+<tr>
+<td><code>clusterBuilder.serviceAccountName</code></td>
+<td>Docker service account name</td>
+<td><code>docker-registry-service-account</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+</li>
+<li>
+<p>Uninstall</p>
+<p>If you want to uninstall the Helm kpack chart, run:</p>
+<div class="highlight"><pre><span></span><code>helm uninstall xsk-kpack
+</code></pre></div>
+</li>
+</ol>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../kyma/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Kyma" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Kyma
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../configurations/environment-variables/" class="md-footer__link md-footer__link--next" aria-label="Next: Environment Variables" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Environment Variables
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright (c) 2021 SAP SE or an SAP affiliate company and XSK contributors.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/dirigible_io" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/dirigible.io" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/groups/8413366" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/c/dirigibleio" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://slack.xsk.io" target="_blank" rel="noopener" title="slack.xsk.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      
+    
+  </body>
+</html>

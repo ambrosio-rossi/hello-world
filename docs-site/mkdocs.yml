@@ -1,0 +1,125 @@
+site_name: Project XSK
+site_url: https://www.xsk.io
+
+nav:
+    - Welcome: 'index.md'
+    - Artifacts: 
+      - artifacts/index.md
+      - hdbanalyticprivilege: 'artifacts/hdbanalyticprivilege.md'
+      - hdbtable: 'artifacts/hdbtable.md'
+      - hdbview: 'artifacts/hdbview.md'
+      - hdbtablefunction: 'artifacts/hdbtablefunction.md'
+      - hdbprocedure: 'artifacts/hdbprocedure.md'
+      - hdbschema: 'artifacts/hdbschema.md'
+      - hdbsynonym: 'artifacts/hdbsynonym.md'
+      - hdbdd: 'artifacts/hdbdd.md'
+      - hdbcds: 'artifacts/hdbdd.md'
+      - hdbsequence: 'artifacts/hdbsequence.md'
+      - xsjs: 'artifacts/xsjs.md'
+      - xsjslib: 'artifacts/xsjs.md'
+      - xsodata: 'artifacts/xsodata.md'
+      - xshttpdest: 'artifacts/xshttpdest.md'
+    - API:
+      - api/index.md
+      - $.db: 'api/db.md'
+      - $.hdb: 'api/hdb.md'
+      - $.import: 'api/import.md'
+      - $.jobs: 'api/jobs.md'
+      - $.net: 
+        - 'api/net/index.md'
+        - $.net.http: 
+          - 'api/net/http/index.md'
+          - $.net.http.Client: 'api/net/http/net.http.Client.md'
+          - $.net.http.Destination: 'api/net/http/net.http.Destination.md'
+          - $.net.http.Request: 'api/net/http/net.http.Request.md'
+        - $.net.Destination: 'api/net/net.Destination.md'
+        - $.net.Mail.Part: 'api/net/net.Mail.Part.md'
+        - $.net.Mail: 'api/net/net.Mail.md'
+        - $.net.SMTPConnection: 'api/net/net.SMTPConnection.md'
+      - $.request: 'api/request.md'
+      - $.response: 'api/response.md'
+      - $.session: 'api/session.md'
+      - $.trace: 'api/trace.md'
+      - $.util: 
+        - 'api/util/index.md'
+        - $.util.codec: 'api/util/util.codec.md'
+        - $.util.Zip: 'api/util/util.Zip.md'
+      - $.web: 
+        - 'api/web/index.md'
+        - $.web.Body: 'api/web/web.Body.md'
+        - $.web.EntityList: 'api/web/web.EntityList.md'
+        - $.web.TupelList: 'api/web/web.TupelList.md'
+        - $.web.WebEntityRequest: 'api/web/web.WebEntityRequest.md'
+        - $.web.WebEntityResponse: 'api/web/web.WebEntityResponse.md'
+        - $.web.WebRequest: 'api/request.md'
+        - $.web.WebResponse: 'api/response.md'
+    - Setup:
+      - Prerequisites:
+        - 'setup/prerequisites/index.md'
+        - Delivery Unit: 'setup/prerequisites/delivery-unit.md'
+        - Database User: 'setup/prerequisites/database-user.md'
+      - Local: 'setup/local.md'
+      - Cloud Foundry: 'setup/cloud-foundry.md'
+      - Kyma: 'setup/kyma.md'
+      - Helm: 'setup/helm.md'
+      - Configurations:
+        - Environment Variables: 'setup/configurations/environment-variables.md'
+        - HDI: 'setup/configurations/hdi.md'
+    - Migration:
+      - Guide: 'migration/guide.md'
+      - Changes: 'migration/changes.md'
+    - Lifecycle:
+      - CI/CD: 'lifecycle/cicd.md'
+    - Cheat Sheet:
+      - Troubleshooting: 'cheatsheet/troubleshooting.md'
+    - Community: 'community.md'
+    
+
+theme:
+  favicon: /img/favicon.ico
+  logo: /img/xsk-logo-white-tr.png
+  name: mkdocs
+  # custom_dir: overrides
+  features:
+    - navigation.instant
+    - navigation.indexes
+    
+extra_css:
+    - css/extra.css
+
+markdown_extensions:
+    - attr_list
+    - pymdownx.snippets
+    - pymdownx.highlight:
+        linenums: false
+    - pymdownx.keys
+    - pymdownx.inlinehilite
+    - pymdownx.superfences
+    - pymdownx.tabbed:
+        alternate_style: true
+    - pymdownx.emoji
+    - meta
+    - footnotes
+    - admonition
+    - pymdownx.details
+
+repo_url: https://github.com/sap/xsk
+repo_name: sap/xsk
+edit_uri: ../../sap/xsk/edit/gh-pages/docs-site/docs/
+
+copyright: Copyright (c) 2021 SAP SE or an SAP affiliate company and XSK contributors.
+extra:
+  analytics:
+    provider: google
+    property: G-M0J229K798
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/dirigible_io
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/dirigible.io
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/groups/8413366
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/c/dirigibleio
+    - icon: fontawesome/brands/slack
+      link: https://slack.xsk.io
