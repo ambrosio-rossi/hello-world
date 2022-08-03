@@ -1,5 +1,5 @@
 site_name: Project XSK
-site_url: https://www.xsk.io
+site_url: https://github.com/codbex/codbex-kronos
 
 nav:
     - Welcome: 'index.md'
@@ -104,9 +104,8 @@ markdown_extensions:
     - admonition
     - pymdownx.details
 
-repo_url: https://github.com/sap/xsk
-repo_name: sap/xsk
-edit_uri: ../../sap/xsk/edit/gh-pages/docs-site/docs/
+repo_url: https://github.com/codbex/codbex-kronos
+repo_name: codbex/codbex-kronos
 
 copyright: Copyright (c) 2021 SAP SE or an SAP affiliate company and XSK contributors.
 extra:
