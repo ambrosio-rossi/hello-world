@@ -30,7 +30,7 @@ You can deploy XSK in the SAP BTP[^1], Cloud Foundry environment.
 1. Log in to the SAP BTP, Cloud Foundry environment with:
 
     ```
-    cf login
+    cf login --sso
     ```
 
 1. Create an XSUAA service instance:
@@ -41,6 +41,12 @@ You can deploy XSK in the SAP BTP[^1], Cloud Foundry environment.
         {
            "xsappname": "<applicationName>-xsuaa",
            "tenant-mode": "shared",
+            "oauth2-configuration": {
+                "redirect-uris": [
+                    "https://<applicationName>.cfapps.<cloudFoundryRegion>.hana.ondemand.com"
+                ],
+                "token-validity": 7200
+            },
            "scopes": [
               {
                  "name": "$XSAPPNAME.Developer",
@@ -87,7 +93,9 @@ You can deploy XSK in the SAP BTP[^1], Cloud Foundry environment.
         ```
 
         !!! Note
-            Replace the `<applicationName>` placeholder with your application name, e.g. **`xsk`**.
+
+            - Replace the `<applicationName>` placeholder with your application name, e.g. **`xsk`**.
+            - Replace the `<cloudFoundryRegion>` placeholder with the Cloud Foundry region, e.g. **`us10-001`**.
 
     - Create an XSUAA service instance:
 
@@ -98,19 +106,13 @@ You can deploy XSK in the SAP BTP[^1], Cloud Foundry environment.
         !!! Note
             Use the same `<applicationName>` as in the previous step.
 
-1. Create map route:
-      ```
-      cf create-route <org-name> --hostname xsk 
-      cf map-route xsk <org-name> --hostname xsk
-      ```
-
 1. Deploy XSK:
 
 
     === "Docker"
 
         ```
-        cf push xsk \
+        cf push xsk-<org-name> \
         --docker-image=dirigiblelabs/xsk-cf:latest \
         -m 2G -k 2G
         ```
@@ -126,23 +128,32 @@ You can deploy XSK in the SAP BTP[^1], Cloud Foundry environment.
         - Bind the XSUAA and HANA Cloud service instances to the XSK deployment:
 
             ```
-            cf bind-service xsk <applicationName>-xsuaa
-            cf bind-service xsk <hanaCloudInstanceName>
-            cf set-env xsk HANA_USERNAME <hanaCloudUsername>
-            cf set-env xsk HANA_PASSWORD <hanaCloudPassword>
+            cf bind-service xsk-<org-name> <applicationName>-xsuaa
+            cf set-env xsk-<org-name> DIRIGIBLE_DATABASE_PROVIDER 'custom'
+            cf set-env xsk-<org-name> DIRIGIBLE_DATABASE_CUSTOM_DATASOURCES 'HANA'
+            cf set-env xsk-<org-name> DIRIGIBLE_DATABASE_DATASOURCE_NAME_DEFAULT 'HANA'
+            cf set-env xsk-<org-name> HANA_DRIVER 'com.sap.db.jdbc.Driver'
+            cf set-env xsk-<org-name> HANA_URL 'jdbc:sap://<hanaUrl>/?encrypt=true&validateCertificate=false'
+            cf set-env xsk-<org-name> HANA_USERNAME '<hanaUsername>'
+            cf set-env xsk-<org-name> HANA_PASSWORD '<hanaPassword>'
             ```
 
             !!! Note
+
+                - Replace the `<org-name>` placeholder with your subaccount's **Subdomain** value.
                 - Replace the `<applicationName>` placeholder with the application name used in the previous steps.
-                - Replace the `<hanaCloudInstanceName>` placeholder with the HANA Cloud service instance name that will be used.
+                - Replace the `<hanaUrl>` placeholder with the HANA Cloud SQL endpoint URL _(including the port)_, e.g. **`69fcb050-....hana.trial-us10.hanacloud.ondemand.com:443`**.
                 - Replace the `<hanaUsername>` placeholder with the HANA Cloud username that will be used.
                 - Replace the `<hanaPassword>` placeholder with the HANA Cloud password that will be used.
 
         - Restart the `xsk` deployment:
 
             ```
-            cf restart xsk
+            cf restart xsk-<org-name>
             ```
+   
+        !!! info "Note"
+            - Replace the `<org-name>` placeholder with your subaccount's **Subdomain** value.
 
     === "Buildpack"
 
